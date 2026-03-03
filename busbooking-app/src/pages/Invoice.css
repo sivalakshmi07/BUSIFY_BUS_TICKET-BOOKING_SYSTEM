@@ -1,0 +1,140 @@
+.ticket-card {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.ticket-header {
+  background: #dc3545; /* Bootstrap Danger Red */
+  color: white;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.4);
+}
+
+.ticket-body {
+  display: flex;
+  padding: 30px;
+  position: relative;
+}
+
+.ticket-body .left {
+  flex: 3;
+  padding-right: 30px;
+}
+
+/* Vertical dashed divider for the tear-off effect */
+.receipt-divider {
+  width: 2px;
+  background-image: linear-gradient(to bottom, transparent 50%, #e0e0e0 50%);
+  background-size: 2px 15px;
+  position: relative;
+}
+
+/* Semi-circles on the divider */
+.receipt-divider::before, .receipt-divider::after {
+  content: "";
+  position: absolute;
+  left: -14px;
+  width: 30px;
+  height: 30px;
+  background: #f8f9fa; /* Matches page background ideally */
+  border-radius: 50%;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+.receipt-divider::before {
+  top: -45px;
+}
+.receipt-divider::after {
+  bottom: -45px;
+}
+
+.ticket-body .right {
+  flex: 1;
+  padding-left: 30px;
+}
+
+/* Route Info Styling */
+.route-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.route-point {
+  display: flex;
+  flex-direction: column;
+}
+
+.route-point .time {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #212529;
+}
+
+.route-point .city {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6c757d;
+  text-transform: uppercase;
+}
+
+.route-line {
+  position: relative;
+}
+
+.route-line i {
+  color: #dc3545;
+}
+
+.details-grid strong {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.price-box {
+  border: 1px dashed #ced4da;
+}
+
+.price {
+  color: #dc3545;
+  font-weight: 800;
+}
+
+/* QR and Stamp */
+.qr {
+  width: 120px;
+  height: 120px;
+  border: 4px solid #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+.paid-stamp {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #198754; /* Bootstrap Success Green */
+  border: 4px solid #198754;
+  padding: 5px 20px;
+  border-radius: 8px;
+  transform: rotate(-15deg);
+  letter-spacing: 2px;
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
+.ticket-footer {
+  background: #f8f9fa;
+  color: #6c757d;
+  padding: 15px 30px;
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #e9ecef;
+}

@@ -1,0 +1,20 @@
+.seat-summary {
+  border-radius: 12px;
+}
+
+.route-box {
+  background: #fafafa;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.route-line {
+  flex: 1;
+  height: 1px;
+  border-bottom: 1px dotted #ccc;
+  margin: 0 10px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

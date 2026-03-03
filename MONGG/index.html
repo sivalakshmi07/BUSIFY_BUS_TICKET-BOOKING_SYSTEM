@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <form action="/add-student" method ="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" ><br><br>
+        <input type="submit" value="Submit">
+        </form>
+        <hr>
+        <h2>Student List</h2>
+
+        <table border="1" id="studentTable">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </table>
+
+        <script>
+            fetch("/students")
+            .then(response => response.json())
+            .then(data => {
+                const table = document.getElementById("studentTable");
+
+                data.forEach(student => {
+                    const row = table.insertRow();
+                    row.insertCell(0).innerText = student.name;
+                    row.insertCell(1).innerText = student.email;
+                    row.insertCell(2).innerText = student.age;
+
+                row.insertCell(3).innerHTML = `<button onclick="editStudent('${student._id}','${student.name}','${student.email}','${student.age}')">Edit</button>`;
+
+                row.insertCell(4).innerHTML=
+                    `<button onclick="deleteStudent('${student._id}')">Delete</button>`;
+                    
+                });
+            });
+            function deleteStudent(id) {
+                fetch(`/delete-student/${id}`, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('Failed to delete student');
+                    }
+                });
+            }
+            function editStudent(id, name, email, age) {
+                document.querySelector("input[name='name']").value = name;
+                document.querySelector("input[name='email']").value = email;
+                document.querySelector("input[name='age']").value = age;
+
+                const form=document.querySelector("form");
+                form.action=`/update-student/${id}`;
+               
+                    fetch(`/update-student/${id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ name: newName, email: newEmail, age: Number(newAge) })
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            location.reload();
+                        } else {
+                            alert('Failed to update student');
+                        }
+                    });
+                }
+            
+            
+        </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+/* ================= BUS DETAILS HEADER ================= */
+.bus-header {
+  height: 220px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.bus-header-overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bus-header h1 {
+  color: #fff;
+  font-size: 38px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* ===== SPACE BETWEEN HEADER & CONTENT ===== */
+.seat-content {
+  margin-top: 60px;   /* adjust: 30px–60px if needed */
+}
+
+.seat-content {
+  margin-top: 150px;
+}
+
+/* ================= SEAT GRID ================= */
+.seat-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 12px;
+  justify-items: center;
+}
+
+.seat {
+  width: 35px;
+  height: 35px;
+  border-radius: 6px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid #999;
+}
+
+.seat.available {
+  background-color: #fff;
+}
+
+.seat.booked {
+  background-color: #f44336;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.seat.selected {
+  background-color: #ffc107;
+}
+
+/* ================= LEGEND ================= */
+.legend {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ===== PAGE LAYOUT FIX ===== */
+.seat-page {
+  min-height:250vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.seat-content {
+  flex: 1;
+  margin-top: 120px;
+}
+
+/* ===== AMENITIES CHECKBOX STYLE ===== */
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 30px;
+}
+
+.amenity {
+  position: relative;
+  padding-left: 28px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Checkbox square */
+.amenity::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  position: absolute;
+  left: 0;
+  top: 3px;
+  border: 2px solid #999;
+}
+
+/* AVAILABLE */
+.amenity.available::before {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.amenity.available::after {
+  content: "✔";
+  position: absolute;
+  left: 3px;
+  top: 0px;
+  font-size: 12px;
+  color: #fff;
+}
+
+/* UNAVAILABLE */
+.amenity.unavailable::before {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.amenity.unavailable::after {
+  content: "✖";
+  position: absolute;
+  left: 4px;
+  top: 0px;
+  font-size: 12px;
+  color: #fff;
+}
+
+/* ===== BUS IMAGES ===== */
+.bus-images {
+  margin-top: 30px;
+}
+
+.bus-image-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  aspect-ratio: 1 / 1; /* ✅ FORCE 1:1 */
+}
+
+.bus-image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* keeps image proportional */
+  transition: transform 0.3s ease;
+}
+
+.bus-image-card img:hover {
+  transform: scale(1.05);
+}
