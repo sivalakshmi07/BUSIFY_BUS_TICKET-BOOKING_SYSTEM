@@ -1,0 +1,25 @@
+\chapter{FRONTEND IMPLEMENTATION}
+
+The frontend of the Bus Ticket Booking System is developed using React.js, following a modular and component-based architecture. The user interface is designed to be responsive, intuitive, and user-friendly, ensuring smooth interaction across different devices. Bootstrap is used for styling and layout, while React Router enables seamless navigation between pages without full page reloads. The frontend handles all user interactions, validations, and role-based access control efficiently.
+
+\section{User Authentication}
+
+The system provides secure user registration and login functionality to control access to booking and payment features. During registration, users are required to enter personal details such as full name, email, phone number, and password. Upon successful registration, users are redirected to the login interface.
+
+The login process uses the registered username and password for authentication, and the login status is stored using browser local storage. Only authenticated users are allowed to proceed to the checkout and payment stages. Logout functionality is also implemented to allow users to securely exit the session. Visual feedback such as success messages and alerts enhances user experience during authentication.
+
+\section{Bus Search \& Seat Selection}
+
+The bus search module allows users to search available buses by selecting source city, destination city, and journey date. City suggestions are provided using dropdown inputs to reduce typing errors, and a swap button enables users to interchange source and destination easily. 
+
+Search results are displayed dynamically, showing available buses along with route details, timings, duration, seat availability, and fare. Users can then proceed to the seat selection page, where an interactive seat layout is displayed. Seats are visually differentiated as available, selected, or booked. Users can select multiple seats, with a limit enforced per booking, and seat selection updates in real time.
+
+\section{Checkout Module}
+
+The checkout module is accessible only to logged-in users, ensuring secure booking flow. If a user attempts to proceed without logging in, the system prompts them to log in first. At checkout, users must provide mandatory passenger details for each selected seat, including name, gender, and age, while email and phone number are required only once for contact purposes. Input validation ensures that all required fields are completed before proceeding. Users can then choose a payment method using visually represented card options. Only after successful validation can users proceed to payment and invoice generation.
+
+\section{Admin Module}
+
+The system includes a dedicated Admin Module with role-based access control. Admin users can log in using predefined admin credentials and are redirected to the Admin Dashboard upon successful authentication. 
+
+The admin dashboard allows administrators to add new buses, edit existing bus details, update routes, schedules, timings, and fare structures, and delete buses when required. All bus data is displayed in a structured table format for easy management. This module ensures that only authorized personnel can manage operational data, maintaining system integrity and reliability.

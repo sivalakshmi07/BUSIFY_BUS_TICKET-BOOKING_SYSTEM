@@ -28,11 +28,13 @@ const UserDashboard = () => {
     }
   }, [username]);
 
-  const handleCancelBooking = async (bookingId) => {
-    if (!window.confirm("Are you sure you want to cancel this ticket?")) return;
+  const [confirmCancelId, setConfirmCancelId] = useState(null);
+
+  const confirmCancellation = async () => {
+    if (!confirmCancelId) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/bookings/${bookingId}/cancel`, {
+      const res = await fetch(`http://localhost:5000/api/bookings/${confirmCancelId}/cancel`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
@@ -43,19 +45,26 @@ const UserDashboard = () => {
       const data = await res.json();
       if (!res.ok) {
         alert(data.message || "Failed to cancel booking");
+        setConfirmCancelId(null);
         return;
       }
 
       // Refresh list locally
       setBookings((prev) =>
         prev.map((b) =>
-          b._id === bookingId ? { ...b, status: "Cancelled", cancelledAt: new Date() } : b
+          b._id === confirmCancelId ? { ...b, status: "Cancelled", cancelledAt: new Date() } : b
         )
       );
+      setConfirmCancelId(null);
     } catch (error) {
       console.error("Cancellation error:", error);
       alert("Server error during cancellation");
+      setConfirmCancelId(null);
     }
+  };
+
+  const handleCancelBooking = (bookingId) => {
+    setConfirmCancelId(bookingId);
   };
 
   const isCompleted = (booking) => {
@@ -135,6 +144,31 @@ const UserDashboard = () => {
             </div>
           );
         })
+      )}
+
+      {/* CONFIRMATION MODAL OVERLAY */}
+      {confirmCancelId && (
+        <div className="modal show d-block" style={{ backgroundColor: "rgba(0,0,0,0.5)" }} tabIndex="-1">
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content shadow">
+              <div className="modal-header">
+                <h5 className="modal-title text-danger">Cancel Ticket</h5>
+                <button type="button" className="btn-close" onClick={() => setConfirmCancelId(null)}></button>
+              </div>
+              <div className="modal-body">
+                <p>Are you sure you want to cancel this ticket? This action cannot be undone.</p>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={() => setConfirmCancelId(null)}>
+                  Keep Ticket
+                </button>
+                <button type="button" className="btn btn-danger" onClick={confirmCancellation}>
+                  Yes, Cancel Ticket
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

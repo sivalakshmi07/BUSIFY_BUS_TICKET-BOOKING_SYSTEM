@@ -27,7 +27,7 @@ const BusList = () => {
         <hr />
 
         <div className="d-flex justify-content-between align-items-center">
-          <h5>Rs. 1600 / seat</h5>
+          <h5>Price Varies</h5>
           <span className="text-success fw-bold">5 seats available</span>
           <button className="btn btn-danger">Reserve Seat</button>
         </div>

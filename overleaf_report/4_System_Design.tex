@@ -1,0 +1,39 @@
+\chapter{SYSTEM DESIGN}
+
+\section{Architectural Design}
+
+The proposed system is designed using a component-based architecture implemented with React.js, which allows the application to be divided into independent, reusable, and manageable components. Each major functionality of the system—such as user authentication, bus search, seat selection, checkout, invoice generation, and admin management—is developed as a separate component. This approach improves code reusability, maintainability, and scalability.
+
+The architecture follows a modular design, where components interact with each other through well-defined props and state management. For example, the bus search component passes selected route data to the bus results component, which further transfers selected bus details to the seat selection and checkout modules. This clear separation of concerns ensures that changes in one module do not directly affect other modules.
+
+Additionally, routing is handled using React Router, enabling smooth navigation between different pages such as Home, Bus Results, Seat Selection, Checkout, Invoice, and Admin Dashboard without reloading the page. The system also uses browser storage (localStorage) to manage user login state and admin privileges. Overall, the architectural design ensures flexibility, efficient data flow, and ease of future enhancements such as backend integration and database connectivity.
+
+\section{Use Case Diagram}
+
+The proposed system is designed using a component-based architecture implemented with React.js, ensuring modularity, reusability, and ease of maintenance. Each major function such as bus search, seat selection, checkout, invoice generation, user authentication, and admin management is developed as an independent component. React Router is used to enable smooth navigation between pages without reloading, improving overall user experience. Data flows through the application using props, state management, and navigation state to maintain consistency across different stages of booking. User authentication is handled using local storage to restrict access to sensitive features like checkout and payment. The system clearly separates user and admin roles, allowing admins to manage buses, routes, schedules, and fare structures securely. This design improves scalability and allows future enhancements such as backend integration and database connectivity. Overall, the system architecture ensures efficiency, security, and a responsive user interface across devices.
+
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.8\textwidth]{usecase.png} % User: Upload your usecase.png and uncomment
+% \caption{Use Case Diagram}
+% \end{figure}
+
+\section{Sequence Diagram}
+
+The sequence diagram illustrates the step-by-step interaction between users, the system interface, and internal modules during the execution of key functionalities in the Bus Ticket Booking System. It represents the logical flow of actions such as user login, bus search, seat selection, checkout, payment processing, and invoice generation. The diagram also highlights the admin workflow, including authentication and bus management operations like adding, editing, and deleting bus details. By visualizing the order of interactions and message exchanges, the sequence diagram helps in understanding system behavior, data flow, and role-based access control. This ensures clarity in system operations and supports effective implementation and future scalability.
+
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.8\textwidth]{sequence.png} % User: Upload your sequence.png and uncomment
+% \caption{Sequence Diagram}
+% \end{figure}
+
+\section{Activity Diagram}
+
+The activity diagram represents the workflow of the Bus Ticket Booking System by illustrating the sequence of activities performed by both users and administrators. It begins with user authentication, followed by bus search, seat selection, passenger detail entry, checkout, payment processing, and ticket generation. Decision points such as login validation and seat availability are clearly depicted to show alternate flows within the system. The diagram also outlines admin activities including login, bus management, route updates, schedule modifications, and fare adjustments. By visualizing the control flow and parallel activities, the activity diagram provides a clear understanding of system functionality, process logic, and role-based operations, ensuring smooth interaction and efficient system execution.
+
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.8\textwidth]{activity.png} % User: Upload your activity.png and uncomment
+% \caption{Activity Diagram}
+% \end{figure}

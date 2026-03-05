@@ -14,7 +14,7 @@ const SeatSelection = () => {
   const journeyDate = state?.date;
   const navigate = useNavigate();
 
-  const SEAT_PRICE = 1600;
+  const SEAT_PRICE = bus?.price || 1600;
 
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [showWarning, setShowWarning] = useState(false);

@@ -168,6 +168,9 @@ app.get("/api/buses/search", async (req, res) => {
 
 /* ================= SAVE BOOKING ================= */
 
+// In-memory lock to prevent race conditions during concurrent booking
+const bookingLocks = {};
+
 app.post("/api/bookings", async (req, res) => {
   try {
 
@@ -183,28 +186,46 @@ app.post("/api/bookings", async (req, res) => {
       return res.status(400).json({ message: "Missing required booking details (busName, journeyDate, seats)" });
     }
 
-    // Prevent Double Booking
-    const existingBookings = await Booking.find({
-      busName: busName,
-      journeyDate: journeyDate,
-      status: { $ne: "Cancelled" },
-      seats: { $in: seats }
-    });
-
-    if (existingBookings.length > 0) {
-      return res.status(400).json({ message: "One or more selected seats are already booked on this date" });
+    const lockKey = `${busName}-${journeyDate}`;
+    if (!bookingLocks[lockKey]) {
+      bookingLocks[lockKey] = Promise.resolve();
     }
 
-    const booking = new Booking({
-      ...req.body,
-      username: req.session.user.username
-    });
+    // Wait for any previous pending booking on this bus/date, then lock
+    let releaseLock;
+    const lockPromise = new Promise(resolve => { releaseLock = resolve; });
+    const previousLock = bookingLocks[lockKey];
+    bookingLocks[lockKey] = previousLock.then(() => lockPromise);
+    await previousLock;
 
-    await booking.save();
+    try {
+      // Prevent Double Booking
+      const existingBookings = await Booking.find({
+        busName: busName,
+        journeyDate: journeyDate,
+        status: { $ne: "Cancelled" },
+        seats: { $in: seats }
+      });
 
-    res.status(201).json({ message: "Booking saved successfully" });
+      if (existingBookings.length > 0) {
+        return res.status(400).json({ message: "One or more selected seats are already booked on this date" });
+      }
+
+      const booking = new Booking({
+        ...req.body,
+        username: req.session.user.username
+      });
+
+      await booking.save();
+
+      return res.status(201).json({ message: "Booking saved successfully" });
+    } finally {
+      // Release the lock for the next request
+      releaseLock();
+    }
 
   } catch (error) {
+    console.error("Booking error:", error);
     res.status(500).json({ message: "Error saving booking" });
   }
 });
