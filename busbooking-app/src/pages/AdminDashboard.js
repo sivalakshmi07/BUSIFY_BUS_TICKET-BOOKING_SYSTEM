@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import busesData from "../data/buses";
-
 const emptyBus = {
   id: null,
   name: "",
@@ -15,7 +13,7 @@ const emptyBus = {
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
-  const [buses, setBuses] = useState(busesData);
+  const [buses, setBuses] = useState([]);
 
   const [showModal, setShowModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
@@ -27,9 +25,24 @@ const AdminDashboard = () => {
     if (!isAdmin) navigate("/");
   }, [navigate]);
 
+  /* 📥 FETCH LIVE BUSES */
+  useEffect(() => {
+    fetch("http://localhost:5000/api/buses")
+      .then((res) => res.json())
+      .then((data) => setBuses(data))
+      .catch((err) => console.error("Failed to fetch buses:", err));
+  }, []);
+
   /* 🟡 DELETE */
-  const deleteBus = (id) => {
-    setBuses(buses.filter((bus) => bus.id !== id));
+  const deleteBus = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/buses/${id}`, { method: "DELETE" });
+      if (response.ok) {
+        setBuses(buses.filter((bus) => bus.id !== id));
+      }
+    } catch (err) {
+      console.error("Failed to delete bus:", err);
+    }
   };
 
   /* 🟢 OPEN ADD */
@@ -47,7 +60,7 @@ const AdminDashboard = () => {
   };
 
   /* 💾 SAVE */
-  const handleSave = () => {
+  const handleSave = async () => {
     if (
       !busForm.name ||
       !busForm.from ||
@@ -61,18 +74,38 @@ const AdminDashboard = () => {
       return;
     }
 
-    if (isEdit) {
-      setBuses(
-        buses.map((b) => (b.id === busForm.id ? busForm : b))
-      );
-    } else {
-      setBuses([
-        ...buses,
-        { ...busForm, id: Date.now() },
-      ]);
-    }
+    try {
+      if (isEdit) {
+        const response = await fetch(`http://localhost:5000/api/buses/${busForm.id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(busForm)
+        });
+        const data = await response.json();
+        if (response.ok) {
+          setBuses(buses.map((b) => (b.id === busForm.id ? data.bus : b)));
+        } else {
+          alert("Error: " + data.message);
+        }
+      } else {
+        const response = await fetch("http://localhost:5000/api/buses", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(busForm)
+        });
+        const data = await response.json();
+        if (response.ok) {
+          setBuses([...buses, data.bus]);
+        } else {
+          alert("Error: " + data.message);
+        }
+      }
 
-    setShowModal(false);
+      setShowModal(false);
+    } catch (err) {
+      console.error("Failed to save bus:", err);
+      alert("Network error. Could not save bus.");
+    }
   };
 
   return (
@@ -145,7 +178,7 @@ const AdminDashboard = () => {
                 {isEdit ? "Edit Bus" : "Add New Bus"}
               </h5>
 
-              {["name","from","to","depart","arrive","type","price"].map((field) => (
+              {["name", "from", "to", "depart", "arrive", "type", "price"].map((field) => (
                 <input
                   key={field}
                   className="form-control mb-2"

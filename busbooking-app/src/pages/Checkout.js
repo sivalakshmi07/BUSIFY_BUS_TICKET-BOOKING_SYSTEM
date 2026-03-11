@@ -194,7 +194,7 @@ const Checkout = () => {
           <h5>Select Payment Method</h5>
 
           <div className="row mt-3">
-            <div className="col-md-6">
+            <div className="col-md-4">
               <label className="payment-card text-center">
                 <input
                   type="radio"
@@ -207,7 +207,7 @@ const Checkout = () => {
               </label>
             </div>
 
-            <div className="col-md-6">
+            <div className="col-md-4">
               <label className="payment-card text-center">
                 <input
                   type="radio"
@@ -217,6 +217,19 @@ const Checkout = () => {
                 />
                 <img src="/black.png" alt="Visa" />
                 <p className="fw-semibold">xxxx 5677</p>
+              </label>
+            </div>
+
+            <div className="col-md-4">
+              <label className="payment-card text-center">
+                <input
+                  type="radio"
+                  name="payment"
+                  value="qr"
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                />
+                <img src="/paym.jpeg" alt="QR Code" />
+                <p className="fw-semibold">Scan QR</p>
               </label>
             </div>
           </div>

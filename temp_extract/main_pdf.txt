@@ -1,0 +1,1557 @@
+
+
+RAJAGIRI COLLEGE OF SOCIAL SCIENCES
+(AUTONOMOUS)
+KALAMASSERY
+Department of Computer Science
+Full Stack Web Development using MERN Project Report
+Online Job Portal Application
+Done by
+Ann Maria Anto
+Reg No: 24117007
+2024-2028
+
+RAJAGIRI COLLEGE OF SOCIAL SCIENCES
+(AUTONOMOUS)
+KALAMASSERY
+CERTIFICATE
+Online Job Portal Application
+Certified that this is the bonafide record of project work done by
+Ann Maria Anto
+Reg No:24117007
+During the academic year 2024-2028, in partial fulfillment of requirements for
+award of the degree,
+Bachelor of Computer Applications
+of
+Rajagiri College of Social Sciences(Autonomous)
+Project CoordinatorHead of the Department
+Mrs. Ann Rija PaulProf. Bindiya M Varghese
+Internal ExminerExternal Examiner
+
+ACKNOWLEDGEMENT
+With heartfelt gratitude, I extend my deepest thanks to the Almighty for His unwavering grace
+and blessings that have made this journey possible.  May His guidance continue to illuminate
+my path in the years ahead.
+I am immensely thankful to Prof.Bindiya M Varghese, head of the department of Computer
+Science , my Faculty Guide and Prof.Mrs Ann Rija Paul my dedicated Project Coordinator, for
+their invaluable guidance and timely advice, which played a pivotal role in shaping this project.
+Their guidance, constant supervision, and provision of essential information were instrumental
+in the successful completion of the Project.
+I  extend  my  profound  thanks  to  all  the  professors  in  the  department  and  the  entire  staff  at
+RCSS for their unwavering support and inspiration throughout my academic journey. My sin-
+cere appreciation goes to my beloved parents, whose guidance has been a beacon in every step
+of my path.
+I am also grateful to my friends and individuals who generously shared their expertise and
+assistance, contributing significantly to the fulfillment of this endeavor.
+Ann Maria Anto
+i
+
+ABSTRACT
+The rapid growth of online recruitment platforms has transformed the way employers and job
+seekers interact.   This project titled Online Job Portal for Recruitment and Job Application
+Management focuses on the design and development of the frontend interface of a job portal
+web application using the MERN stack, with emphasis on user experience and interface design.
+The primary objective of this project is to provide a user-friendly and responsive web in-
+terface that enables job seekers to search and apply for jobs efficiently and allows recruiters to
+post and manage job listings. The frontend of the system is developed using modern web tech-
+nologies such as HTML,CSS, JavaScript, and React.js to ensure responsiveness, reusability of
+components, and smooth navigation across different modules of the application.
+The system provides interfaces for job seeker registration and login, profile creation, job
+search with filters, job application, and application status tracking. Recruiter interfaces include
+job posting, application viewing, and candidate shortlisting This project demonstrates how a
+well-structured frontend can improve usability, accessibility, and overall efficiency of an online
+job portal system.  The application serves as a foundation for future backend integration and
+enhancement of features such as authentication, database connectivity, and real-time notifica-
+tions.
+ii
+
+LIST OF TABLES
+2.1Software Requirement Specification   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .6
+2.2System Assumptions   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .6
+4.1Unit Testing – User Registration Module .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    36
+4.2Unit Testing – Login Module  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    36
+4.3Unit Testing – Job Search Module   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    37
+4.4Unit Testing – Job Search Module   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    37
+4.5Unit Testing – Job Application Module .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    37
+4.6Integration Test – Job Application Flow   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    39
+4.7Integration Test – Recruitment Process  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    39
+4.8Integration Test – Admin Module .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    39
+4.9Test Cases – User Registration Page   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    40
+4.10  Test Cases – Login Page    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    41
+4.11  Test Cases – Job Seeker Profile Page  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    41
+4.12  Test Cases – Job Search Page  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    42
+4.13  Test Cases – Job Application Page   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    42
+4.14  Test Cases – Recruiter Job Posting Page   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    43
+4.15  Test Cases – Recruiter Application Management .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    43
+4.16  Test Cases – Admin Module   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    44
+iii
+
+LIST OF FIGURES
+2.1Project Pipeline  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .4
+3.1Use case Diagram  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    15
+3.2activity diagram  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    18
+3.3Sequence diagram .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    20
+3.4Class diagram  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    22
+3.5Home Page   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    25
+3.6Home Page- Jobs Section  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    26
+3.7Home Page - Explore Courses Section  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    26
+3.8Jobseeker Register Page .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    27
+3.9Jobseeker  Employee Login Modal  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    27
+3.10  Employer Sign up Page  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    28
+3.11  Admin Portal   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    28
+3.12  Search Jobs Page   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    29
+3.13  Jobseeker Profile Page    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    29
+3.14  Jobseeker Application Page .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    30
+3.15  Employer Dashboard Page   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    30
+3.16  Employer Post Job Page    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    31
+3.17  Employer -Manage Jobs Page .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    31
+3.18  Employer - View Applicants Page   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    32
+3.19  Admin Dashboard Page  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    32
+3.20  Admin - Manage Users Page   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    33
+3.21  Admin - Manage Job Postings Page    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    33
+3.22  Admin- Manage Reports Page   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    34
+5.1Backend and Frontend Folder Structure    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    45
+6.1Github Upload    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    46
+6.2Files and Folders in Github  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    46
+iv
+
+CONTENTS
+ACKNOWLEDGEMENTi
+ABSTRACTii
+LIST OF TABLESiii
+LIST OF FIGURESiv
+1    INTRODUCTION1
+2    SYSTEM ANALYSIS2
+2.1Scope of the Project .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .2
+2.2Overall Description  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .2
+2.3Project Pipeline  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .3
+2.3.1Software Requirement Specification (SRS)   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .5
+2.4User Classes and Characteristics   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .7
+2.5Feasibility Study    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .7
+2.6Specific Requirements    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .7
+2.7External Interface Requirements   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    11
+2.8System Environment   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    12
+2.8.1Frontend Technology  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    12
+2.8.2Backend Technology  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    13
+3    SYSTEM DESIGN15
+3.1Use case model   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    15
+3.2Activity Diagram   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    18
+3.3Sequence Diagram   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    20
+3.4Class Diagram .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    22
+3.5Screenshots   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    25
+4    TESTING35
+4.1Unit Testing  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    35
+4.1.1Unit Testing Modules .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    35
+4.1.2Unit Test Cases  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    36
+4.2Integration Testing    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    38
+4.2.1Integration Testing Scenarios .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    38
+4.2.2Integration Test Cases    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    38
+4.2.3Testing Conclusion  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    39
+v
+
+4.3System Testing   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    40
+5    DEPLOYMENT45
+5.1Folder Structure  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    45
+6    GIT HISTORY46
+7    CONCLUSION47
+8    APPENDIX48
+8.1Minimum Software Requirements   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    48
+8.2Minimum Hardware Requirements  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    48
+vi
+
+Online Job Portal App
+1    INTRODUCTION
+Recruitment is a critical function in every organization,  yet traditional hiring methods often
+involve time-consuming manual processes, limited reach, and inefficient communication be-
+tween employers and job seekers.  With the increasing digitalization of services,  web-based
+recruitment platforms have emerged as essential tools to simplify and streamline the hiring
+process.  An online job portal provides a centralized environment where employers can adver-
+tise vacancies and candidates can explore opportunities without geographical limitations.
+This project is undertaken to address these challenges by developing a structured and effi-
+cient web-based system.  The platform is designed to improve transparency, accessibility, and
+interaction between stakeholders while ensuring organized data management and secure user
+authentication.   By implementing modern web technologies and a modular system architec-
+ture, the project aims to demonstrate how technology can enhance recruitment efficiency and
+provide a scalable foundation for future improvements in digital hiring solutions.
+Department of Computer Science, RCSS1
+
+Online Job Portal App
+2    SYSTEM ANALYSIS
+2.1    Scope of the Project
+This project aims to develop a web-based platform that connects job seekers, recruiters, and
+administrators through a centralized system. The system allows:
+•  Job seekers to register, create profiles, upload resumes, search for jobs, and apply onli-
+neor unnatural behavior that could affect gameplay.
+•  Recruiters to post job openings, manage applications, shortlist candidates, and schedule
+interviews
+•  Administrators to manage users, monitor job postings, and ensure platform integrity
+2.2    Overall Description
+Product Perspective
+The Online Job Portal for Recruitment and Job Application Management is a web-based
+application designed as a standalone system that operates on a client–server architecture.  The
+system is developed using the MERN Stack,  where the frontend is built using React.js,  the
+backend logic is handled by Node.js and Express.js, and data storage is managed using Mon-
+goDB.
+The application acts as a centralized platform that bridges the gap between job seekers and
+recruiters by providing a digital solution for job searching, recruitment, and application track-
+ing. The system does not replace existing recruitment processes entirely but enhances them by
+automating job postings, applications, shortlisting, and communication.
+The system interacts with:
+•  A database server for storing user data, job postings, applications, and resumes
+•  Email services for sending notifications and verification messages
+•  Web browsers as the primary user interface
+The product is designed to be scalable,  allowing future enhancements such as premium job
+listings, AI-based job recommendations, and resume scoring systems.
+Department of Computer Science, RCSS2
+
+Online Job Portal App
+Product Functions
+The major functions of the system are categorized based on user roles:
+1.  Job Seeker Functions
+•  User registration and secure login
+•  Profile creation and management
+•  Resume upload and update
+•  Job search using filters such as skills, experience, location, and salary
+•  Job application submission
+•  Tracking application status
+•  Viewing application history
+2.  Recruiter Functions
+•  Recruiter registration and login
+•  Job posting and management
+•  Viewing applicant details and resumes
+•  Shortlisting or rejecting candidates
+•  Updating application status
+•  Scheduling interviews
+3.  Administrator Functions
+•  Managing user accounts (job seekers and recruiters)
+•  Monitoring job postings
+•  Removing invalid or fraudulent content
+•  Viewing platform analytics and statistics
+•  Handling user complaints and feedback
+2.3    Project Pipeline
+Department of Computer Science, RCSS3
+
+Online Job Portal App
+Figure 2.1: Project Pipeline
+Department of Computer Science, RCSS4
+
+Online Job Portal App
+2.3.1    Software Requirement Specification (SRS)
+No.RequirementEssential   /
+Desirable
+Description of the RequirementRemarks
+RS1User Registration
+& Login
+EssentialUsers register using email or phone
+and  login  using  password  or  OTP.
+JWT-based  authentication  is  used
+for secure access.
+Passwordreset
+via email OTP.
+RS2Job   Seeker   Pro-
+file Management
+EssentialCreate and manage personal profile.
+Upload resume in PDF or DOC for-
+mats.   Add  skills,  experience,  and
+education details.
+Profile  complete-
+ness   meter   rec-
+ommended.
+RS3Job Search & Fil-
+ters
+EssentialUsers  can  search  jobs  by  job  title,
+location,  salary  range,  experience
+level, and job type.
+Auto-suggest
+searchrecom-
+mended.
+RS4JobApplication
+System
+EssentialOne-click   job   application   using
+saved resume.  Users can track ap-
+plication  status  and  view  applica-
+tion history.
+Application
+statusupdated
+dynamically.
+RS5RecruiterJob
+Posting Module
+EssentialRecruiters  can  post  new  jobs,  edit
+or  update  job  postings,  and  delete
+postings.
+Only  verified  re-
+cruiters  can  post
+jobs.Each  job
+has  a  unique  Job
+ID.
+RS6Application
+Management
+(Recruiter)
+EssentialRecruiters  can  view  applicant  list
+for each job,  preview or download
+resumes,  shortlist  or  reject  candi-
+dates, and update application status.
+Recruiters    man-
+agecandidate
+status and resume
+access securely.
+RS7Notification  Sys-
+tem
+DesirableEmail  notifications  for  application
+submission, status updates, and new
+job suggestions.
+OTP  support  for
+login  and  verifi-
+cation.
+RS8AdminDash-
+board
+EssentialAdmin  can  view  and  manage  all
+users,  enable  or  disable  recruiters
+and  job  seekers,   remove  fraudu-
+lent job postings, and view system
+statistics.
+Admin   has   full
+control  over  sys-
+tem operations.
+Department of Computer Science, RCSS5
+
+Online Job Portal App
+No.RequirementEssential   /
+Desirable
+Description of the RequirementRemarks
+RS9Resume Builder /
+ATS Score
+DesirableSystem  analyzes  resumes  for  ATS
+score and keyword matching.
+Suggestsim-
+provementsto
+increase selection
+chances.
+RS10CompanyRe-
+views & Ratings
+DesirableEmployees  can  post  company  re-
+views based on work experience.
+Helps   job   seek-
+ers evaluate com-
+pany  culture  and
+salary standards.
+RS11Interview
+Scheduling
+Module
+DesirableRecruiters  can  schedule  interview
+slots for selected candidates.
+Jobseekers
+receivenoti-
+ficationsand
+canacceptor
+reschedule   inter-
+views.
+RS12Helpdesk  /  Sup-
+port & Feedback
+DesirableUsers   can   raise   complaints   or
+queries through the system.
+Adminorre-
+cruiters    respond
+throughdash-
+board.
+Table 2.1: Software Requirement Specification
+Assumptions
+No.Assumption
+AS1Users have a valid email address or phone number for registration.
+AS2Internet connectivity is available for all users accessing the system.
+AS3Job details posted by recruiters are accurate and authentic.
+AS4Resume files uploaded by users are virus-free and within the allowed file size.
+AS5Recruiters are verified and represent legitimate companies.
+AS6A payment gateway may be added in the future for premium job listings.
+AS7Unique Job IDs and Application IDs are automatically generated by the sys-
+tem.
+Table 2.2: System Assumptions
+Department of Computer Science, RCSS6
+
+Online Job Portal App
+2.4    User Classes and Characteristics
+The system identifies three main user classes
+1.  Job Seekers:
+Job seekers are individuals searching for employment opportunities.  They may vary in
+technical  expertise  but  are  expected  to  have  basic  internet  and  web  application  usage
+knowledge. Job seekers interact with the system frequently for job searches and applica-
+tion tracking.
+2.  Recruiters:
+Recruiters represent organizations or companies posting job openings. They are expected
+to have moderate technical knowledge and use the system to manage job listings and
+evaluate candidates efficiently.
+3.  Administrator:
+The administrator has advanced system access and technical understanding. The admin is
+responsible for maintaining the integrity, security, and smooth functioning of the system.
+2.5    Feasibility Study
+A feasibility study is conducted to analyze the practicality of developing the proposed system.
+The feasibility of the project is evaluated under the following categories:
+1.  Technical Feasibility
+The project is technically feasible as it uses widely adopted frontend technologies such
+as HTML, CSS, JavaScript, and React.js. These technologies are well-supported, easy to
+learn, and suitable for developing responsive single-page applications.
+2.  Economic Feasibility
+The development of the frontend application does not involve significant cost, as open-
+source tools and libraries are used.  The project can be developed using freely available
+development environments and does not require expensive hardware or software.
+3.  Operational Feasibility
+The system is easy to operate and user-friendly.  Since the application is designed with
+intuitive navigation and simple workflows, users can easily adapt to the system without
+extensive training.
+2.6    Specific Requirements
+1.  User Registration and Authentication
+Department of Computer Science, RCSS7
+
+Online Job Portal App
+(a)  Job Seeker Registration:
+The system shall allow new job seekers to register by providing personal details
+such as name, email address, phone number, and password.  The system shall val-
+idate the entered data to ensure correctness and uniqueness of the email or phone
+number.   Upon successful registration,  the system shall store the user details se-
+curely in the database and prompt the user for account verification using an OTP
+sent to the registered email or phone number.
+(b)  Recruiter Registration:
+The system shall allow recruiters to register by providing company details such as
+company name, email, contact number, and password.  The recruiter account shall
+be  marked  as  “Pending  Verification”  until  approved  by  the  administrator.   Only
+verified recruiters shall be allowed to post job vacancies.
+(c)  User Login:
+The system shall allow registered users to log in using valid credentials.  Authen-
+tication shall be implemented using JWT-based security to ensure safe access to
+protected resources.  The system shall provide error messages for invalid creden-
+tials and allow password recovery using OTP-based verification.
+2.  Profile Management
+(a)  Job Seeker Profile Management
+The system shall allow job seekers to create and update their profiles, including:
+•  Personal details
+•  Educational qualifications
+•  Work experience
+•  Skills and certifications
+The system shall store profile data securely and allow users to update information
+at any time.
+(b)  Resume Upload and Management
+The system shall allow job seekers to upload resumes in supported formats such
+as PDF and DOC. The system shall validate file size and format before upload.
+Uploaded  resumes  shall  be  stored  securely  and  linked  to  the  user’s  profile.   Job
+seekers shall be able to replace or delete previously uploaded resumes.
+3.  Job Search and Filtering
+The system shall provide a job search feature that allows job seekers to search for job
+opportunities using various filters including:
+•  Job title
+•  Location
+•  Required skills
+Department of Computer Science, RCSS8
+
+Online Job Portal App
+•  Experience level
+•  Salary range
+•  Job type (full-time, part-time, internship)
+Search results shall be displayed in a user-friendly format with sorting options.
+4.  Job Application System
+The system shall allow job seekers to apply for jobs directly through the portal using
+their uploaded resume.
+Upon application submission:
+•  The system shall record the application details
+•  The application status shall be set to “Applied”
+•  The recruiter shall be notified
+Job seekers shall be able to view and track the status of all applications.
+5.  Job Posting and Management (Recruiter)
+The system shall allow verified recruiters to post job openings by entering details such
+as:
+•  Job title
+•  Job description
+•  Required skills
+•  Experience level
+•  Salary range
+•  Location
+Each  job  posting  shall  be  assigned  a  unique  Job  ID.  Recruiters  shall  be  able  to  edit,
+update, or delete job postings.
+6.  Application Management (Recruiter)
+The system shall allow recruiters to view a list of applicants for each job posting.  Re-
+cruiters shall be able to:
+•  View candidate profiles
+•  Download resumes
+•  Shortlist or reject candidates
+•  Update application status
+Application statuses include:
+Department of Computer Science, RCSS9
+
+Online Job Portal App
+•  Applied
+•  Viewed
+•  Shortlisted
+•  Interview Scheduled
+•  Hired
+•  Rejected
+7.  Interview Scheduling
+The  system  shall  allow  recruiters  to  schedule  interviews  for  shortlisted  candidates  by
+selecting date, time, and interview mode. Job seekers shall receive notifications regarding
+interview schedules and shall be able to accept or request rescheduling.
+8.  Notification System
+The system shall send automated notifications via email for:
+•  Registration verification
+•  Job application submission
+•  Application status updates
+•  Interview scheduling
+Notifications improve user engagement and communication efficiency.
+9.  Admin Management Module
+The system shall provide an admin dashboard that allows the administrator to:
+•  View and manage all users
+•  Activate or block accounts
+•  Monitor job postings
+•  Remove invalid or fraudulent listings
+•  View system statistics
+The administrator has full control over system operations.
+10.  Error Handling and Validation
+The system shall handle errors gracefully and provide meaningful error messages for:
+•  Invalid inputs
+•  Failed uploads
+•  Unauthorized access
+•  System failures
+Department of Computer Science, RCSS10
+
+Online Job Portal App
+2.7    External Interface Requirements
+This section describes how the system interacts with users and other systems through defined
+interfaces.
+1.  User Interface Requirements
+The Online Job Portal shall provide a responsive and user-friendly web interface that
+can be accessed through standard web browsers. The user interface shall be designed to
+ensure ease of navigation and clarity for all user roles.
+Job Seeker Interface
+•  Registration and login forms
+•  Profile management dashboard
+•  Resume upload interface
+•  Job search and filter options
+•  Job application tracking page
+Recruiter Interface
+•  Recruiter dashboard
+•  Job posting and management forms
+•  Applicant listing and resume viewing
+•  Interview scheduling interface
+Administrator Interface
+•  Admin dashboard
+•  User management panels
+•  Job monitoring and analytics view
+•  Feedback and complaint handling section
+The interface shall follow consistent design patterns and provide proper validation mes-
+sages and alerts.
+2.  Hardware Interface Requirements
+The system does not require any specialized hardware. It shall operate on:
+•  Desktop computers
+•  Laptops
+•  Tablets
+•  Smartphones
+Department of Computer Science, RCSS11
+
+Online Job Portal App
+All hardware devices must support a modern web browser and internet connectivity.
+3.  Software Interface Requirements
+The system interacts with the following software components:
+•  Web Browser: Google Chrome, Mozilla Firefox, Microsoft Edge
+•  Database Server: MongoDB
+•  Backend Server: Node.js with Express.js
+•  Email Service: SMTP-based email services for notifications and OTP delivery
+4.  Communication Interface Requirements
+The system shall use the HTTP/HTTPS protocol for communication between the client
+and server. All sensitive data transmission shall be secured using HTTPS.
+RESTful APIs shall be used for communication between the frontend and backend.
+2.8    System Environment
+2.8.1    Frontend Technology
+The frontend of the online job portal is developed using modern web technologies that sup-
+port dynamic content rendering, responsiveness, and component-based development.  The se-
+lected technologies ensure better performance, maintainability, and scalability of the applica-
+tion.  Since the project focuses only on frontend implementation, the technologies are chosen
+to efficiently handle user interface design and client-side logic.
+The MEARN stack is adopted for the project, with emphasis on the frontend components.
+The technologies used include HTML for structure, CSS for styling, JavaScript for client-side
+functionality, and React.js for building interactive user interfaces.
+1.  HTML (HyperText Markup Language)
+HTML is used as the foundational markup language for structuring the web pages of
+the application. It defines the layout and organization of content such as forms, buttons,
+navigation menus, and text elements.
+In this project, HTML elements are used to create login forms, registration pages, job
+listings,  dashboards,  and  profile  sections.   Semantic  HTML  tags  are  used  to  improve
+readability and accessibility. The structured nature of HTML helps in organizing the UI
+components effectively and supports better integration with CSS and JavaScript.
+2.  CSS (Cascading Style Sheets)
+CSS is used to style the web pages and enhance the visual appearance of the application.
+It controls the layout, colors, fonts, spacing, and responsiveness of the user interface.
+Department of Computer Science, RCSS12
+
+Online Job Portal App
+The project uses CSS to implement consistent design patterns across all pages. Respon-
+sive design techniques such as flexible layouts and media queries are applied to ensure
+compatibility across different screen sizes. CSS helps in creating a clean and professional
+look, improving user experience and visual appeal.
+3.  JavaScript
+JavaScript is used to implement client-side logic and interactivity within the application.
+It enables dynamic content updates, form validation, event handling, and data manipula-
+tion on the client side.
+In this project, JavaScript is used to handle user actions such as form submission, but-
+ton clicks,  and navigation between pages.   It also helps in managing application state
+and simulating backend interactions using mock data.  JavaScript plays a crucial role in
+making the application interactive and responsive.
+4.  React.js
+React.js is a JavaScript library used for building user interfaces, particularly single-page
+applications. It allows developers to create reusable components and manage application
+state efficiently.
+The  project  uses  React.js  to  divide  the  application  into  modular  components  such  as
+login, dashboard, job listing, and profile components.  React’s component-based archi-
+tecture improves code reusability and maintainability.  It also enhances performance by
+updating only the required parts of the user interface using the virtual DOM.
+2.8.2    Backend Technology
+The  backend  of  the  online  job  portal  is  developed  using  the  MERN  stack,  which  includes
+MongoDB, Express.js, React.js, and Node.js.The backend is responsible for handling business
+logic, authentication, database operations, and communication between the client and server.
+It ensures secure data processing, efficient request handling, and structured storage of user and
+job-related information.
+1.  Node.js Node.js is a server-side JavaScript runtime environment used to build scalable
+and high-performance web applications. It enables the execution of JavaScript code out-
+side the browser and is particularly suitable for building RESTful APIs.
+In this project, Node.js is used to create the backend server, handle HTTP requests, man-
+age routing,  and process asynchronous operations.   Its non-blocking and event-driven
+architecture improves performance and allows the system to handle multiple concurrent
+users efficiently.
+2.  Express.js Express.js is a lightweight and flexible web application framework built on
+top  of  Node.js.   It  simplifies  server-side  development  by  providing  tools  for  routing,
+middleware handling, and API creation.
+Department of Computer Science, RCSS13
+
+Online Job Portal App
+The project uses Express.js to define API endpoints for user registration, login, job post-
+ing, job applications, and profile management.  Middleware functions are implemented
+for request validation, authentication, and error handling.  Express helps in organizing
+backend code in a structured and maintainable manner.
+3.  MongoDB
+MongoDB is a NoSQL database used for storing application data in a flexible, JSON-
+like format.  It is highly scalable and suitable for handling large volumes of structured
+and semi-structured data.
+In this project,  MongoDB is used to store user details,  job postings,  applications,  re-
+sumes, and administrative data.  Collections are created for job seekers, recruiters, jobs,
+and applications. MongoDB allows efficient querying and updating of records, ensuring
+reliable data management.
+4.  RESTful API Implementation
+The backend follows RESTful API principles to enable communication between the fron-
+tend and backend systems. HTTP methods such as GET, POST, PUT, and DELETE are
+used to perform various operations.
+API endpoints are created for:
+•  User registration and authentication
+•  Profile management
+•  Job posting and retrieval
+•  Application submission and tracking
+•  Admin management functions
+RESTful  architecture  ensures  modularity,  scalability,  and  ease  of  integration  with  the
+frontend application.
+5.  Authentication and Security (JWT)
+JSON Web Token (JWT) authentication is implemented to ensure secure access to pro-
+tected resources. After successful login, a token is generated and sent to the client. This
+token is used to verify user identity for subsequent requests.
+Passwords are stored in encrypted form, and role-based access control is implemented to
+differentiate between job seekers, recruiters, and administrators.  Secure authentication
+mechanisms enhance system reliability and protect sensitive user data.
+Department of Computer Science, RCSS14
+
+Online Job Portal App
+3    SYSTEM DESIGN
+3.1    Use case model
+Figure 3.1: Use case Diagram
+The Use Case Diagram represents the functional requirements of the Job Portal Application
+and shows how different users interact with the system.  It provides a high-level view of the
+system’s behavior from the user’s perspective and clearly identifies the responsibilities of each
+actor.
+Actors Identified
+The system consists of three primary actors:
+1.  Job Seeker
+Department of Computer Science, RCSS15
+
+Online Job Portal App
+2.  Recruiter
+3.  Admin
+Each actor interacts with the system to perform specific tasks based on their role.
+Use Case Description
+1.  Job Seeker
+The  Job  Seeker  is  an  individual  searching  for  employment  opportunities  through  the
+portal. The following use cases are associated with the Job Seeker:
+•  Register: Allows a new user to create an account on the system.
+•  Login: Enables registered users to access the system.
+–  Extended by:  OTP Verification, which adds an extra layer of security during
+login.
+•  Manage Profile:  Allows job seekers to update personal, educational, and profes-
+sional details.
+•  Search  Jobs:  Enables  job  seekers  to  search  for  jobs  using  filters  such  as  skills,
+location, and experience.
+•  Apply for Job: Allows job seekers to apply for selected job postings.
+–  Includes:  Upload Resume, ensuring a resume is attached during job applica-
+tion.
+•  View Application History: Displays previously applied jobs.
+•  Track Application Status: Enables users to monitor the progress of their job appli-
+cations.
+•  Receive  Notifications:  Sends  alerts  regarding  application  updates  and  interview
+schedules.
+2.  Recruiter
+The Recruiter represents employers or HR personnel responsible for hiring candidates.
+The following use cases are associated with the Recruiter:
+•  Post Job: Allows recruiters to create new job postings.
+•  Edit/Delete Job Posting:  Enables recruiters to modify or remove existing job list-
+ings.
+•  View Applications: Allows recruiters to view applications received for posted jobs.
+•  Shortlist / Reject Candidate: Enables recruiters to evaluate candidates.
+–  Includes: Send Notification, which informs job seekers about application deci-
+sions.
+Department of Computer Science, RCSS16
+
+Online Job Portal App
+•  Update Application Status: Allows recruiters to update the current status of candi-
+dates.
+•  Schedule Interview: Enables recruiters to schedule interviews.
+–  Includes: Send Notification, to inform job seekers about interview details.
+3.  Admin
+The Admin is responsible for monitoring and managing the entire system. The following
+use cases are associated with the Admin:
+•  Manage Users: Allows admin to manage job seekers and recruiters.
+–  Extended by: Block / Unblock User, which controls user access.
+•  Manage Job Postings: Enables admin to monitor and remove invalid or fraudulent
+job listings.
+•  View System Analytics: Displays statistics related to users, jobs, and applications.
+•  Handle Complaints & Feedback: Allows admin to respond to user issues and feed-
+back.
+Relationships Used
+• <<include>> relationship is used where a use case always requires another use case
+to be executed (e.g., Apply for Job includes Upload Resume).
+• <<extend>> relationship is used where additional behavior is conditionally executed
+(e.g., Login extended by OTP Verification).
+Department of Computer Science, RCSS17
+
+Online Job Portal App
+3.2    Activity Diagram
+Figure 3.2: activity diagram
+The activity diagram represents the workflow of actions performed by different users within the
+system.  It illustrates the sequence of activities from the start of an operation to its completion
+and helps in understanding the overall flow of the application.
+Description of the Workflow
+The workflow begins when a user opens the Job Portal website.
+User Registration and Login
+•  The system first checks whether the user is already registered.
+•  If the user is not registered, the system directs the user to the Register Account activity.
+•  After registration, the user must complete Email or OTP verification.
+•  Once verification is successful, the user can proceed to Login.
+Department of Computer Science, RCSS18
+
+Online Job Portal App
+User Role Selection
+After successful login, the system determines the role of the user, which can be:
+•  Job Seeker
+•  Recruiter
+•  Admin
+Based on the role, the workflow branches into separate activity paths.
+Job Seeker Activities
+•  The Job Seeker can search for jobs and view job details.
+•  If the job seeker decides to apply for a job,  the system prompts the user to upload a
+resume.
+•  After uploading the resume, the job seeker can submit the application.
+•  The job seeker can then track the application status to monitor progress.
+Recruiter Activities
+•  The Recruiter can post job openings on the portal.
+•  The recruiter can view applications submitted by job seekers.
+•  The recruiter can shortlist or reject candidates.
+•  If an interview is required, the recruiter can schedule an interview for the selected candi-
+date.
+Admin Activities
+•  The Admin can manage users, including job seekers and recruiters.
+•  The Admin can manage job postings to ensure platform integrity.
+•  The Admin can view system reports and analytics related to users and job applications.
+Completion of Workflow
+•  After completing their respective activities, users can log out of the system.
+•  The workflow ends at the final state, indicating a successful termination of the process.
+Department of Computer Science, RCSS19
+
+Online Job Portal App
+3.3    Sequence Diagram
+Figure 3.3: Sequence diagram
+The Sequence Diagram illustrates the interaction between different actors and system compo-
+nents over time in the Job Portal Application. It shows how requests are initiated by users and
+how the system processes these requests in a sequential order, including communication with
+the notification system.
+Participants Identified
+The sequence diagram involves the following participants:
+•  Job Seeker
+•  Recruiter
+•  Admin
+•  Notification System
+Each participant interacts with the system based on their role and responsibilities.
+Sequence Description
+Department of Computer Science, RCSS20
+
+Online Job Portal App
+1.  Job Seeker Interaction Flow
+•  The Job Seeker initiates the process by registering and then logging in to the system.
+•  During login, OTP verification is performed to ensure secure authentication.
+•  After successful login, the Job Seeker can:
+–  Manage profile details
+–  Upload resume
+–  Search for jobs
+–  Apply for jobs
+–  Track application status
+–  View application history
+•  When the Job Seeker applies for a job, the system ensures that resume upload is
+completed as part of the application process.
+•  The Job Seeker receives notifications related to application updates from the Noti-
+fication System.
+2.  Recruiter Interaction Flow
+•  The Recruiter logs into the system using valid credentials.
+•  The Recruiter can post new job openings and edit or delete existing job postings.
+•  Recruiters can view applications submitted by job seekers.
+•  Based on candidate evaluation, the recruiter can shortlist or reject candidates.
+•  If required, the recruiter can schedule interviews.
+•  Actions such as scheduling interviews and updating application status trigger the
+Notification System to send notifications to job seekers.
+3.  Admin Interaction Flow
+•  The Admin logs into the system with administrative privileges.
+•  The Admin can:
+–  Manage users (job seekers and recruiters)
+–  Block or unblock users when necessary
+–  Manage job postings
+–  View system analytics
+–  Handle complaints and feedback
+•  Administrative actions may also trigger system notifications when required.
+4.  Notification System Interaction
+Department of Computer Science, RCSS21
+
+Online Job Portal App
+•  The Notification System is responsible for sending alerts related to:
+–  OTP verification during login
+–  Job application submission
+–  Interview scheduling
+–  Application status updates
+•  It ensures timely communication between the system and users.
+3.4    Class Diagram
+Figure 3.4: Class diagram
+The Class Diagram represents the static structure of the Job Portal Application.  It shows the
+system classes, their attributes, methods, and the relationships among them. This diagram helps
+in understanding how data is organized and how different components of the system interact at
+an object level.
+Description of Classes
+1.  User (Base Class)
+The User class is the parent class that represents all users of the system.
+Attributes:
+•  userId : String
+•  name : String
+Department of Computer Science, RCSS22
+
+Online Job Portal App
+•  email : String
+•  password : String
+Methods:
+•  login()
+•  logout()
+This class provides common properties and behaviors shared by Job Seekers, Recruiters,
+and Admins.
+2.  JobSeeker (Derived Class)
+The JobSeeker class inherits from the User class and represents individuals searching for
+jobs.
+Attributes:
+•  resume : File
+•  skills : String
+•  experience : int
+Methods:
+•  searchJobs()
+•  applyForJob()
+•  trackApplication()
+A Job Seeker can submit multiple job applications through the system.
+3.  Recruiter (Derived Class)
+The Recruiter class also inherits from the User class and represents employers or HR
+personnel.
+Attributes:
+•  companyName : String
+Methods:
+•  postJob()
+•  manageApplications()
+•  scheduleInterview()
+A Recruiter can post multiple job openings and manage applications received for those
+jobs.
+Department of Computer Science, RCSS23
+
+Online Job Portal App
+4.  Admin (Derived Class)
+The Admin class inherits from the User class and represents the system administrator.
+Methods:
+•  manageUsers()
+•  manageJobs()
+•  viewAnalytics()
+The Admin has full control over system users, job postings, and analytics.
+5.  Job
+The Job class represents job postings created by recruiters.
+Attributes:
+•  jobId : String
+•  title : String
+•  location : String
+•  salary : double
+•  description : String
+•  postDate : Date
+Each job is posted by one recruiter and can receive multiple applications.
+6.  Application
+The Application class represents job applications submitted by job seekers.
+Attributes:
+•  applicationId : String
+•  status : String
+•  applyDate : Date
+Each application is associated with one job seeker and one job.
+Relationships Between Classes
+•  Inheritance:
+–  JobSeeker, Recruiter, and Admin inherit from the User class.
+•  Association:
+–  One Recruiter can post many Jobs.
+Department of Computer Science, RCSS24
+
+Online Job Portal App
+–  One JobSeeker can submit many Applications.
+–  One Job can receive many Applications.
+•  Multiplicity:
+–  Relationships are clearly defined using one-to-many associations to represent real-
+world recruitment scenarios.
+3.5    Screenshots
+[H]
+Figure 3.5: Home Page
+Department of Computer Science, RCSS25
+
+Online Job Portal App
+Figure 3.6: Home Page- Jobs Section
+Figure 3.7: Home Page - Explore Courses Section
+Department of Computer Science, RCSS26
+
+Online Job Portal App
+Figure 3.8: Jobseeker Register Page
+Figure 3.9: Jobseeker  Employee Login Modal
+Department of Computer Science, RCSS27
+
+Online Job Portal App
+Figure 3.10: Employer Sign up Page
+Figure 3.11: Admin Portal
+Department of Computer Science, RCSS28
+
+Online Job Portal App
+Figure 3.12: Search Jobs Page
+Figure 3.13: Jobseeker Profile Page
+Department of Computer Science, RCSS29
+
+Online Job Portal App
+Figure 3.14: Jobseeker Application Page
+Figure 3.15: Employer Dashboard Page
+Department of Computer Science, RCSS30
+
+Online Job Portal App
+Figure 3.16: Employer Post Job Page
+Figure 3.17: Employer -Manage Jobs Page
+Department of Computer Science, RCSS31
+
+Online Job Portal App
+Figure 3.18: Employer - View Applicants Page
+Figure 3.19: Admin Dashboard Page
+Department of Computer Science, RCSS32
+
+Online Job Portal App
+Figure 3.20: Admin - Manage Users Page
+Figure 3.21: Admin - Manage Job Postings Page
+Department of Computer Science, RCSS33
+
+Online Job Portal App
+Figure 3.22: Admin- Manage Reports Page
+Department of Computer Science, RCSS34
+
+Online Job Portal App
+4    TESTING
+Software testing is a crucial phase in the Software Development Life Cycle (SDLC) that ensures
+the developed system functions correctly, efficiently, and securely according to the specified
+requirements.  The primary objective of testing is to identify errors, validate system behavior,
+and ensure that all modules operate as intended.   In the Job Portal Application,  testing was
+performed to verify both functional and non-functional aspects of the system, including user
+registration, authentication, job search, application management, and administrative controls.
+A structured testing approach was adopted to ensure accuracy, reliability, and overall system
+quality before deployment.
+4.1    Unit Testing
+Unit testing is a software testing technique where individual components or modules of the
+system are tested independently to verify that they function correctly. Each module is tested in
+isolation before integrating it with other modules.
+In the Job Portal Application, unit testing ensures that individual functionalities such as user
+authentication, job posting, profile management, and application submission work correctly.
+For a MERN stack application, unit testing can be performed on:
+•  Backend API functions (Node.js / Express)
+•  Database operations
+•  Individual frontend components
+Unit testing helps developers detect errors early and ensures that each module behaves as
+expected.
+4.1.1    Unit Testing Modules
+The following modules were tested individually:
+•  User Registration Module
+•  Login Authentication Module
+•  Profile Management Module
+•  Job Search Module
+•  Job Application Module
+Department of Computer Science, RCSS35
+
+Online Job Portal App
+•  Recruiter Job Posting Module
+•  Admin Management Module
+4.1.2    Unit Test Cases
+Unit Testing – User Registration Module
+Test    Case
+ID
+ModuleTest ScenarioInputExpectedOut-
+put
+Status
+UTREG01RegistrationValid  user  regis-
+tration
+Validname,
+email, password
+User account cre-
+ated
+Pass
+UTREG02RegistrationDuplicate emailExisting emailErrormessage
+displayed
+Pass
+UTREG03RegistrationInvalid email for-
+mat
+Invalid emailValidation errorPass
+Table 4.1: Unit Testing – User Registration Module
+.
+Unit Testing – Login Module
+Test    Case
+ID
+ModuleTest ScenarioInputExpectedOut-
+put
+Status
+UTLOG01LoginValid credentialsCorrect email and
+password
+Login successfulPass
+UTLOG02LoginInvalid passwordIncorrectpass-
+word
+Login failed mes-
+sage
+Pass
+UTLOG03LoginEmpty fieldsNo inputValidation errorPass
+Table 4.2: Unit Testing – Login Module
+Unit Testing – Job Search Module
+Department of Computer Science, RCSS36
+
+Online Job Portal App
+Test    Case
+ID
+ModuleTest ScenarioInputExpectedOut-
+put
+Status
+UTJOB01Job SearchSearch   by   key-
+word
+DeveloperMatchingjobs
+displayed
+Pass
+UTJOB02Job SearchSearch   by   loca-
+tion
+KochiJobs   filtered   by
+location
+Pass
+UTJOB03Job SearchInvalid keywordRandom textNo results foundPass
+Table 4.3: Unit Testing – Job Search Module
+Unit Testing – Job Search Module
+Test    Case
+ID
+ModuleTest ScenarioInputExpectedOut-
+put
+Status
+UTJOB01Job SearchSearch   by   key-
+word
+DeveloperMatchingjobs
+displayed
+Pass
+UTJOB02Job SearchSearch   by   loca-
+tion
+KochiJobs   filtered   by
+location
+Pass
+UTJOB03Job SearchInvalid keywordRandom textNo results foundPass
+Table 4.4: Unit Testing – Job Search Module
+Unit Testing – Job Application Module
+Test    Case
+ID
+ModuleTest ScenarioInputExpectedOut-
+put
+Status
+UTAPP01Job   Appli-
+cation
+Apply   with   re-
+sume
+Valid resumeApplication   sub-
+mitted
+Pass
+UTAPP02Job   Appli-
+cation
+Apply without re-
+sume
+No fileError messagePass
+UTAPP03Job   Appli-
+cation
+Duplicate    appli-
+cation
+Already appliedDuplicate
+blocked
+Pass
+Table 4.5: Unit Testing – Job Application Module
+Department of Computer Science, RCSS37
+
+Online Job Portal App
+4.2    Integration Testing
+Integration testing verifies the interaction between multiple modules of the system to ensure
+that they work together correctly.
+While unit testing focuses on individual modules, integration testing checks the data flow
+and communication between modules.
+In the Job Portal Application, integration testing ensures that different components such as:
+•  User authentication
+•  Job search
+•  Job application
+•  Recruiter job posting
+•  Notification system
+work together without errors.
+4.2.1    Integration Testing Scenarios
+Key integration flows tested include:
+•  Registration→ Login→ Profile creation
+•  Job search→ Job application→ Application storage
+•  Recruiter posting job→ Job visible to job seekers
+•  Recruiter updating application status→ Notification sent
+•  Admin managing users→ System updates user access
+4.2.2    Integration Test Cases
+Integration Test – Job Application Flow
+Test    Case
+ID
+Integrated Mod-
+ules
+Test ScenarioExpected ResultStatus
+IT01Login+Job
+Search
+Userlogsinand
+searches jobs
+Jobs displayedPass
+IT02Job Search + Ap-
+plication
+User selects job and ap-
+plies
+Application
+stored in database
+Pass
+Department of Computer Science, RCSS38
+
+Online Job Portal App
+Test    Case
+ID
+Integrated Mod-
+ules
+Test ScenarioExpected ResultStatus
+IT03Application
++Recruiter
+Dashboard
+Recruiter  views  appli-
+cation
+Application  visi-
+ble
+Pass
+Table 4.6: Integration Test – Job Application Flow
+Integration Test – Recruitment Process
+Test    Case
+ID
+Integrated Mod-
+ules
+Test ScenarioExpected ResultStatus
+IT04Recruiter Login +
+Job Posting
+Recruiter posts new jobJob visible to job
+seekers
+Pass
+IT05Recruiter + Noti-
+fication
+Recruiter  schedules  in-
+terview
+Notification   sent
+to candidate
+Pass
+IT06Recruiter   +   Ap-
+plication Status
+Recruiter updates statusJob   seeker   sees
+updated status
+Pass
+Table 4.7: Integration Test – Recruitment Process
+Integration Test – Admin Module
+Test    Case
+ID
+Integrated Mod-
+ules
+Test ScenarioExpected ResultStatus
+IT07Admin   Login   +
+UserManage-
+ment
+Admin blocks userUser   access   re-
+voked
+Pass
+IT08Admin+Job
+Management
+Admin deletes jobJobremoved
+from system
+Pass
+Table 4.8: Integration Test – Admin Module
+4.2.3    Testing Conclusion
+All unit testing and integration testing scenarios were successfully executed.  The results con-
+firm that individual modules and integrated components of the Job Portal Application operate
+correctly and meet the specified requirements.
+Department of Computer Science, RCSS39
+
+Online Job Portal App
+The system  demonstrates reliable  performance and correct  interaction between  different
+modules.
+4.3    System Testing
+System Testing was conducted to evaluate the overall functionality and performance of the Job
+Portal Application after integrating all modules. The purpose of system testing is to verify that
+the complete system operates according to the specified functional and non-functional require-
+ments.  During this phase, the application was tested from the end-user perspective to ensure
+that all features such as user registration, login, profile management, job posting, job search,
+application submission, interview scheduling, and administrative controls work correctly and
+cohesively.
+The testing process involved executing predefined test cases for each module to validate input
+handling,  data processing,  system responses,  and error management.   The results confirmed
+that the system performs reliably under normal operating conditions and satisfies the expected
+requirements.
+Test Cases – User Registration Page
+Test
+Case
+ID
+DescriptionPreconditionsTest StepsExpected ResultStatus
+TR01Registerwith
+valid inputs
+User not regis-
+tered
+Openregistration
+page,enter    valid
+name,   email,   pass-
+wordandclick
+Register
+Registration  suc-
+cessful, OTP sent
+Pass
+TR02Register  with  ex-
+isting email
+Email  already
+registered
+Enter  existing  email
+and submit form
+Errormessage
+displayed
+Pass
+TR03Registerwith
+empty fields
+NoneLeave  fields  empty
+and click Register
+Validation   errors
+shown
+Pass
+TR04Register  with  in-
+valid email
+NoneEnter  invalid  email
+format and submit
+Email   validation
+error
+Pass
+TR05OTP verificationRegistration
+completed
+Enter valid OTP and
+submit
+Account   verified
+successfully
+Pass
+TR06Invalid OTPOTP generatedEnter wrong OTPVerification
+failed message
+Pass
+Table 4.9: Test Cases – User Registration Page
+Test Cases – Login Page
+Department of Computer Science, RCSS40
+
+Online Job Portal App
+Test
+Case
+ID
+DescriptionPreconditionsTest StepsExpected ResultStatus
+TL01Login  with  valid
+credentials
+Registered
+user
+Enter  correct  email
+and password
+Login successfulPass
+TL02Loginwith
+invalid password
+Registered
+user
+Enter   wrong   pass-
+word
+Errormessage
+shown
+Pass
+TL03Login with empty
+fields
+NoneClick  login  without
+input
+Validationmes-
+sage shown
+Pass
+TL04OTP-based loginOTP enabledEnter correct OTPLogin successfulPass
+TL05Invalid OTPOTP sentEnter wrong OTPAccess deniedPass
+Table 4.10: Test Cases – Login Page
+Test Cases – Job Seeker Profile Page
+Test
+Case
+ID
+DescriptionPreconditionsTest StepsExpected ResultStatus
+TP01Update profile in-
+formation
+Jobseeker
+logged in
+Edit   profile   details
+and save
+Profile updatedPass
+TP02Uploadresume
+(PDF)
+Logged inUpload   valid   PDF
+file
+Resume uploadedPass
+TP03Uploadresume
+(DOC)
+Logged inUpload DOC fileResume uploadedPass
+TP04Uploadunsup-
+ported file
+Logged inUpload image fileErrormessage
+shown
+Pass
+TP05Resume size limit
+check
+Logged inUpload large fileSizevalidation
+error
+Pass
+Table 4.11: Test Cases – Job Seeker Profile Page
+Test Cases – Job Search Page
+Department of Computer Science, RCSS41
+
+Online Job Portal App
+Test
+Case
+ID
+DescriptionPreconditionsTest StepsExpected ResultStatus
+TJ01Search   by   key-
+word
+Jobs availableEnter  keyword  and
+search
+Matchingjobs
+displayed
+Pass
+TJ02Search   by   loca-
+tion
+Jobs availableSelect location filterFilteredresults
+shown
+Pass
+TJ03Search by experi-
+ence
+Jobs availableSelectexperience
+range
+Jobs filteredPass
+TJ04Search   with   no
+results
+NoneEnter   random   key-
+word
+No    jobs    found
+message
+Pass
+Table 4.12: Test Cases – Job Search Page
+Test Cases – Job Application Page
+Test
+Case
+ID
+DescriptionPreconditionsTest StepsExpected ResultStatus
+TA01Applyforjob
+with resume
+Logged inClick  apply  and  up-
+load resume
+Application   sub-
+mitted
+Pass
+TA02Apply without re-
+sume
+Logged inClick  apply  without
+resume
+Errormessage
+shown
+Pass
+TA03Duplicate job ap-
+plication
+Already
+applied
+Apply for same jobDuplicatepre-
+vented
+Pass
+TA04Track application
+status
+Application
+exists
+Open status pageStatus   displayed
+correctly
+Pass
+Table 4.13: Test Cases – Job Application Page
+Test Cases – Recruiter Job Posting Page
+Test
+Case
+ID
+DescriptionPreconditionsTest StepsExpected ResultStatus
+TRE01Post new jobRecruiter
+logged in
+Enter job details and
+submit
+Job postedPass
+Department of Computer Science, RCSS42
+
+Online Job Portal App
+Test
+Case
+ID
+DescriptionPreconditionsTest StepsExpected ResultStatus
+TRE02Postjobwith
+missing data
+Recruiter
+logged in
+Leave fields emptyValidation errorPass
+TRE03Edit job postingJob existsUpdate job and saveJob updatedPass
+TRE04Delete  job  post-
+ing
+Job existsClick deleteJob removedPass
+Table 4.14: Test Cases – Recruiter Job Posting Page
+Test Cases – Recruiter Application Management
+Test
+Case
+ID
+DescriptionPreconditionsTest StepsExpected ResultStatus
+TRA05View applicationsApplications
+exist
+Openapplications
+page
+Applications
+listed
+Pass
+TRA06Shortlistcandi-
+date
+Application
+exists
+Click shortlistStatus updatedPass
+TRA07Reject candidateApplication
+exists
+Click rejectStatus updatedPass
+TRA08Scheduleinter-
+view
+Candidate
+shortlisted
+Enter date and timeInterview   sched-
+uled
+Pass
+Table 4.15: Test Cases – Recruiter Application Management
+Test Cases – Admin Module
+Test
+Case
+ID
+DescriptionPreconditionsTest StepsExpected ResultStatus
+TM01View all usersAdmin  logged
+in
+Open user listUsers displayedPass
+TM02Block userUser existsClick blockUser blockedPass
+TM03Unblock userUser blockedClick unblockUser activatedPass
+TM04View analyticsData availableOpen analytics pageReportsdis-
+played
+Pass
+Department of Computer Science, RCSS43
+
+Online Job Portal App
+Test
+Case
+ID
+DescriptionPreconditionsTest StepsExpected ResultStatus
+TM05Handle feedbackFeedback   ex-
+ists
+Respond    to    com-
+plaint
+Issue resolvedPass
+Table 4.16: Test Cases – Admin Module
+All the above test cases were executed successfully, and the system produced the expected
+results.  This confirms that the Job Portal Application satisfies its functional requirements and
+performs reliably under normal operating conditions.
+Department of Computer Science, RCSS44
+
+Online Job Portal App
+5    DEPLOYMENT
+5.1    Folder Structure
+Figure 5.1: Backend and Frontend Folder Structure
+Department of Computer Science, RCSS45
+
+Online Job Portal App
+6    GIT HISTORY
+To ensure proper version management and easy distribution,  all game builds have been up-
+loaded to Git.  This allows for efficient tracking of updates, bug fixes, and improvements over
+time. By using Git, different versions of the game can be accessed, making it easier to roll back
+changes if needed.  The repository serves as a centralized location for storing and sharing the
+game builds, ensuring that the latest version is always available for testing and distribution.
+Figure 6.1: Github Upload
+Figure 6.2: Files and Folders in Github
+Department of Computer Science, RCSS46
+
+Online Job Portal App
+7    CONCLUSION
+The Job Portal Application was successfully designed and developed to provide a centralized
+platform that connects job seekers, recruiters, and administrators. The system simplifies the re-
+cruitment process by allowing job seekers to search and apply for jobs while enabling recruiters
+to post vacancies and manage candidate applications efficiently. The administrator module en-
+sures proper monitoring and management of users and job postings within the system.
+The  application  was  developed  using  the  MERN  stack,  which  includes  MongoDB,  Ex-
+press.js, React.js, and Node.js.  This technology stack provides a scalable and efficient frame-
+work for building modern web applications.   The frontend interface was designed to be re-
+sponsive  and  user-friendly,  while  the  backend  architecture  ensures  proper  handling  of  data,
+authentication, and communication between system components.
+Various testing methods, including unit testing, integration testing, and system testing, were
+conducted to ensure the reliability and functionality of the system.  The results of these tests
+confirmed that the application performs as expected and satisfies the functional requirements
+specified during the system design phase.
+Overall, the Job Portal Application demonstrates how modern web technologies can be used
+to create an efficient digital recruitment platform.  The system improves accessibility, reduces
+manual effort in recruitment processes, and provides a structured environment for managing
+job opportunities and applications.
+Department of Computer Science, RCSS47
+
+Online Job Portal App
+8    APPENDIX
+8.1    Minimum Software Requirements
+The  Job Portal  Application  is  developed using  the  MERN stack  and  requires  the following
+software components for development and execution:
+•  Operating System: Windows 10/11, Linux, or macOS.
+•  Web Browser:  Google Chrome, Mozilla Firefox, or Microsoft Edge for accessing and
+testing the web application.
+•  Development Environment: Visual Studio Code or any modern code editor for writing
+and managing project files.
+•  Runtime Environment:  Node.js (version 16 or higher) for executing backend server-
+side code.
+•  Package Manager: npm (Node Package Manager) or Yarn for managing project depen-
+dencies.
+•  Database:  MongoDB for storing user accounts, job postings, applications, and system
+data.
+•  Version Control (Optional): Git for managing source code and version tracking.
+8.2    Minimum Hardware Requirements
+The system does not require specialized hardware and can operate on standard computing de-
+vices.
+•  Processor: Intel Core i3 (or AMD equivalent) or higher.
+•  RAM:  Minimum  4  GB  (8  GB  recommended  for  smoother  development  and  browser
+usage).
+•  Storage: At least 500 MB of free disk space for project files and dependencies.
+•  Display:  Standard display with a minimum resolution of 1366x768 for proper viewing
+of the web interface.
+•  Input Devices: Keyboard and mouse for interacting with the application.
+•  Network Connectivity:  A stable internet connection is required for accessing the web
+application and database services.
+Department of Computer Science, RCSS48

@@ -106,13 +106,13 @@ const Invoice = () => {
             <div className="receipt-divider"></div>
 
             <div className="right d-flex flex-column justify-content-center align-items-center">
-              <img src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Busify_Ticket_ID_${billNo}`} alt="QR Code" className="qr mb-3" />
+              <img src="/link.png" alt="Invoice Link QR" className="qr mb-3" />
             </div>
           </div>
 
           <div className="ticket-footer">
             <span><strong>Note:</strong> 40% charge for cancellation within 24 hours.</span>
-            <span><i className="bi bi-telephone"></i> +977-9876543210</span>
+            <span><i className="bi bi-telephone"></i> +91-90000003456</span>
           </div>
         </div>
 

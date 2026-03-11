@@ -166,6 +166,86 @@ app.get("/api/buses/search", async (req, res) => {
   }
 });
 
+/* ================= GET ALL BUSES ================= */
+app.get("/api/buses", async (req, res) => {
+  try {
+    const buses = await Bus.find();
+    res.json(buses);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching buses" });
+  }
+});
+
+/* ================= ADD NEW BUS ================= */
+app.post("/api/buses", async (req, res) => {
+  try {
+    const { name, from, to, depart, arrive, type, price } = req.body;
+
+    // Assigning defaults for fields not present in the admin creation form
+    const newBus = new Bus({
+      id: Date.now(),
+      name,
+      from,
+      to,
+      depart,
+      arrive,
+      type,
+      price: Number(price),
+      duration: "TBD",
+      seats: 40,
+      rating: 4.0,
+      company: "Admin Added",
+      amenities: ["AC"]
+    });
+
+    await newBus.save();
+    res.status(201).json({ message: "Bus added successfully", bus: newBus });
+  } catch (error) {
+    console.error("Error adding bus:", error);
+    res.status(500).json({ message: "Error adding bus", error: error.message });
+  }
+});
+
+/* ================= EDIT BUS ================= */
+app.put("/api/buses/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, from, to, depart, arrive, type, price } = req.body;
+
+    const updatedBus = await Bus.findOneAndUpdate(
+      { id: Number(id) },
+      { name, from, to, depart, arrive, type, price: Number(price) },
+      { new: true }
+    );
+
+    if (!updatedBus) {
+      return res.status(404).json({ message: "Bus not found" });
+    }
+
+    res.json({ message: "Bus updated successfully", bus: updatedBus });
+  } catch (error) {
+    console.error("Error updating bus:", error);
+    res.status(500).json({ message: "Error updating bus" });
+  }
+});
+
+/* ================= DELETE BUS ================= */
+app.delete("/api/buses/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedBus = await Bus.findOneAndDelete({ id: Number(id) });
+
+    if (!deletedBus) {
+      return res.status(404).json({ message: "Bus not found" });
+    }
+
+    res.json({ message: "Bus deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting bus:", error);
+    res.status(500).json({ message: "Error deleting bus" });
+  }
+});
+
 /* ================= SAVE BOOKING ================= */
 
 // In-memory lock to prevent race conditions during concurrent booking
